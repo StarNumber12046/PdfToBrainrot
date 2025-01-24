@@ -1,0 +1,9 @@
+**.mp4
+**.mp3
+.venv
+.env
+**.pdf
+**.txt
+**.json
+*.ttf
+**/__pycache__
