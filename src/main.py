@@ -11,6 +11,9 @@ import numpy as np
 from moviepy.editor import CompositeVideoClip, TextClip
 from moviepy.editor import CompositeAudioClip, VideoFileClip, AudioFileClip
 import moviepy.audio.fx.all as afx
+import moviepy.video.fx.all as vfx
+from moviepy.video.fx.loop import loop
+from moviepy.audio.fx.audio_loop import audio_loop
 from pypdf import PdfReader
 from gtts import gTTS
 import replicate
@@ -269,7 +272,16 @@ def main(
 
         min_duration = tts_clip.duration
 
-        # Trim both clips to the same duration
+        # Loop video and audio if they're shorter than TTS duration
+        if video_clip.duration < min_duration:
+            num_loops = int(np.ceil(min_duration / video_clip.duration))
+            video_clip = loop(video_clip, duration=min_duration)
+
+        if audio_clip.duration < min_duration:
+            num_loops = int(np.ceil(min_duration / audio_clip.duration))
+            audio_clip = audio_clip = audio_loop(audio_clip, duration=min_duration)
+
+        # Trim both clips to the exact duration needed
         video_clip = video_clip.subclip(0, min_duration)
         audio_clip = audio_clip.subclip(0, min_duration).fx(afx.volumex, volume)  # type: ignore
         clip_path = upload_to_tixte(tts_clip_path)[0]

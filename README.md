@@ -97,3 +97,5 @@ python src/main.py \
 The tool expects the following directory structure:
 audio/ : contains audio tracks for background music
 video/ : contains video tracks that will be used as background
+
+Note: If the background audio or video is shorter than the narration, it will be automatically looped to match the required duration.
