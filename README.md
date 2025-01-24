@@ -21,6 +21,7 @@ A Python tool that generates video content by combining background video, audio,
   - DeepSeek API key (for summarization)
   - ElevenLabs API key (for premium TTS)
   - Tixte API key (for subtitle generation)
+  - Replicate API token (for whisper subtitle generation and llama-3.1)
 
 ## Installation
 
@@ -49,6 +50,7 @@ pip install -r requirements.txt
 ```env
 DEEPSEEK_API_KEY=your_deepseek_api_key
 ELEVENLABS_API_KEY=your_elevenlabs_api_key
+REPLICATE_API_TOKEN=your_replicate_api_key
 TIXTE_API_KEY=your_tixte_api_key
 TIXTE_DOMAIN=your_tixte_domain
 ```
